@@ -1,0 +1,26 @@
+{
+  "name": "export-git-tarball",
+  "version": "0.0.0",
+  "description": "Export a bare git repo as a single tarball file to a given path",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "''"
+  },
+  "keywords": [
+    "git",
+    "export",
+    "tarball",
+    "bare",
+    "repo",
+    "repository"
+  ],
+  "author": "Noah Isaacson",
+  "license": "BSD"
+}
