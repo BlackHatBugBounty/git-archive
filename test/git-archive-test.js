@@ -3,6 +3,8 @@ var temp = require('temp')
 var rimraf = require('rimraf')
 var assert = require('assert')
 var fs = require('fs')
+var should = require('should')
+var inspect = require('eyespect').inspector()
 
 var gitArchive = require('../')
 describe('Git Archive', function() {
