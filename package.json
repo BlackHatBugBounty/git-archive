@@ -22,5 +22,14 @@
     "repository"
   ],
   "author": "Noah Isaacson",
-  "license": "BSD"
+  "license": "BSD",
+  "dependencies": {
+    "temp": "~0.5.1"
+  },
+  "devDependencies": {
+    "should": "~1.2.2",
+    "mocha": "~1.12.0",
+    "rimraf": "~2.2.2",
+    "eyespect": "~0.1.10"
+  }
 }

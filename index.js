@@ -2,11 +2,12 @@ var exec = require('child_process').exec
 
 module.exports = function(data, cb) {
 
-  var error = validateData
+  var error = validateData(data)
   if (error) {
     return cb(error)
   }
   var repoDir = data.repoDir
+  var outputPath = data.outputPath
   var command = buildCommand(data)
   var opts = {
     cwd: repoDir
@@ -14,13 +15,13 @@ module.exports = function(data, cb) {
   exec(command, opts, function (err, stdout, stderr) {
     var error
     if (err) {
-      error = 'failed to archive git commit'
+      error = new Error('failed to archive git commit')
       error.source = err
       error.stdout = stdout
       error.stderr = stderr
       return cb(error)
     }
-    return cb(null, stdout, stderr)
+    return cb(null, outputPath)
   })
 }
 

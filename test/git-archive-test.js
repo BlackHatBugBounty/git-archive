@@ -4,7 +4,6 @@ var rimraf = require('rimraf')
 var assert = require('assert')
 var fs = require('fs')
 var should = require('should')
-var inspect = require('eyespect').inspector()
 
 var gitArchive = require('../')
 describe('Git Archive', function() {
@@ -18,7 +17,7 @@ describe('Git Archive', function() {
     }
     gitArchive(data, function (err, reply) {
       should.not.exist(err)
-      reply.should.eql(outputPath)
+      reply.should.eql(outputPath, 'reply should eql outputPath')
       assert.ok(fs.existsSync(outputPath), 'archive not found at output path: ' + outputPath)
       rimraf(outputPath, done)
     })
@@ -32,10 +31,11 @@ describe('Git Archive', function() {
       outputPath: outputPath,
       repoDir: repoDir
     }
-    gitArchive(data, function (err, reply) {
+    gitArchive(data, function (err, outputPath) {
       should.exist(err)
-      inspect(err, 'error in git archive')
-      should.not.exist(reply)
+      err.message.should.eql('failed to archive git commit')
+      should.exists(err.stderr)
+      should.not.exist(outputPath, 'no reply should be returned')
       done()
     })
   })
