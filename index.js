@@ -6,11 +6,11 @@ module.exports = function(data, cb) {
   if (error) {
     return cb(error)
   }
-  var repoDir = data.repoDir
+  var repoPath = data.repoPath
   var outputPath = data.outputPath
   var command = buildCommand(data)
   var opts = {
-    cwd: repoDir
+    cwd: repoPath
   }
   exec(command, opts, function (err, stdout, stderr) {
     var error
@@ -48,9 +48,9 @@ function validateData(data) {
     error.source = 'commit field missing in data object'
     return error
   }
-  if (!data.repoDir) {
+  if (!data.repoPath) {
     error = new Error('failed to archive data. Missing key')
-    error.source = 'repoDir field missing in data object'
+    error.source = 'repoPath field missing in data object'
     return error
   }
   return error

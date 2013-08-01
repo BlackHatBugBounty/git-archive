@@ -15,12 +15,12 @@ Say for example you have a repo named `apples` and you want to export the repo a
 ```javascript
 var gitArchive = require('git-archive')
 var commitHash = 'c3f9bcb782bcfc0216cef5c7f68f6f86cd3bea8a'
-var bareRepoDir = '/path/to/bare/repo.git'
+var barerepoPath = '/path/to/bare/repo.git'
 var outputPath = path.join(__dirname, 'apples.tar.gz')
 var data = {
   commit: commitHash,
   outputPath: outputPath,
-  repoDir: bareRepoDir
+  repoPath: barerepoPath
 }
 gitArchive(data, function(err, reply) {
   var error
