@@ -1,6 +1,6 @@
 {
   "name": "git-archive",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Export a bare git repo as a single tarball file to a given path",
   "main": "index.js",
   "directories": {
