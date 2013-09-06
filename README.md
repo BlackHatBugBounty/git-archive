@@ -2,6 +2,8 @@
 
 Module to take a bare git repo, archive it, and export it as a tarball to a given path
 
+[![Build Status](https://travis-ci.org/nisaacson/git-archive.png?branch=master)](https://travis-ci.org/nisaacson/git-archive)
+
 # Installation
 
 ```bash
