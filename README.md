@@ -14,22 +14,44 @@ npm install -S git-archive
 
 Say for example you have a repo named `apples` and you want to export the repo as a tarball named `apples.tar.gz` in the current directory. The export archive must reference a sha1 hash
 
+
+## Promises
+
 ```javascript
 var gitArchive = require('git-archive')
-var commitHash = 'c3f9bcb782bcfc0216cef5c7f68f6f86cd3bea8a'
-var barerepoPath = '/path/to/bare/repo.git'
-var outputPath = path.join(__dirname, 'apples.tar.gz')
+
 var data = {
-  commit: commitHash,
-  outputPath: outputPath,
-  repoPath: barerepoPath
+  commit: 'c3f9bcb782bcfc0216cef5c7f68f6f86cd3bea8a',
+  outputPath: path.join(__dirname, 'apples.tar.gz'),
+  repoPath: '/path/to/bare/repo.git'
 }
+
+gitArchive(data)
+  .then(function(outputPath) {
+    console.log('git archived to tarball at path %s', reply)
+  })
+  .fail(function(err) {
+    console.dir(err)
+    throw error // or pass the error to a callback
+  }).done()
+})
+```
+
+## Callbacks
+
+```javascript
+var gitArchive = require('git-archive')
+
+var data = {
+  commit: 'c3f9bcb782bcfc0216cef5c7f68f6f86cd3bea8a',
+  outputPath: path.join(__dirname, 'apples.tar.gz'),
+  repoPath: '/path/to/bare/repo.git'
+}
+
 gitArchive(data, function(err, reply) {
   var error
   if (err) {
-    error = new Error('failed to archive git commit in repo and export as a tarball')
-    error.source = err
-    throw Error // or pass the error to a callback
+    return console.dir(err)
   }
   console.log('git archived to tarball at path %s', reply)
 })
